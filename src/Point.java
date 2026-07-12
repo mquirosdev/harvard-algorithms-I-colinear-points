@@ -37,10 +37,12 @@ public class Point implements Comparable<Point> {
         double deltaY = (double) (that.y - this.y);
         double deltaX = (double) (that.x - this.x);
 
-        if(deltaX == 0 && deltaY == 0) {
+        if (deltaX == 0 && deltaY == 0) {
             return Double.NEGATIVE_INFINITY;
         } else if (deltaX == 0) {
             return Double.POSITIVE_INFINITY;
+        } else if (deltaY == 0) {
+            return 0.0;
         } else {
             return deltaY / deltaX;
         }
@@ -65,33 +67,15 @@ public class Point implements Comparable<Point> {
     }
 
     public static void main(String[] args) {
-        Point p = new Point(1,1);
-
-//        System.out.println("compare (1,1) vs (1,1): " + p.compareTo(new Point(1,1))); // 0
-//        System.out.println("compare (1,1) vs (2,1): " + p.compareTo(new Point(2,1))); // -1
-//        System.out.println("compare (1,1) vs (0,1): " + p.compareTo(new Point(0,1))); // 1
-//        System.out.println("compare (1,1) vs (0,2): " + p.compareTo(new Point(0,2))); // -1
-//        System.out.println("compare (1,1) vs (2,0): " + p.compareTo(new Point(2,0))); // 1
-
-//        System.out.println(
-//                "ref: (1,1) -> (2,2) vs (2,4)"
-//                        + p.slopeOrder().compare(new Point(2,2), new Point(2,4))
-//        ); // -1
-//
-//        System.out.println(
-//                "ref: (1,1) -> (2,4) vs (2,2)"
-//                        + p.slopeOrder().compare(new Point(2,4), new Point(2,2))
-//        ); // 1
-//
-//        System.out.println(
-//                "ref: (1,1) -> (2,2) vs (3,3)"
-//                        + p.slopeOrder().compare(new Point(2,2), new Point(3,3))
-//        ); // 0
-
-//        System.out.println("(1,1)-(2,2) " + p.slopeTo(new Point(2,2))); // 1
-//        System.out.println("(1,1)-(2,0) " + p.slopeTo(new Point(2,0))); // -1
-//        System.out.println("(1,1)-(2,1) " + p.slopeTo(new Point(2,1))); // 0
-//        System.out.println("(1,1)-(1,1) " + p.slopeTo(new Point(1,1))); // -Infinity
-//        System.out.println("(1,1)-(1,2) " + p.slopeTo(new Point(1,2))); // +Infinity
+        Point[] points = {
+                new Point(10000, 0),
+                new Point(0, 10000),
+                new Point(3000, 7000),
+                new Point(7000, 3000),
+                new Point(20000, 21000),
+                new Point(3000, 4000),
+                new Point(14000, 15000),
+                new Point(6000, 7000)
+        };
     }
 }

@@ -3,21 +3,27 @@ import java.util.Arrays;
 
 public class BruteCollinearPoints {
     private final Point[] points;
+    private final LineSegment[] segments;
 
     public BruteCollinearPoints(Point[] points) {
-        this.points = points;
+        if (points == null) {
+            throw new IllegalArgumentException("Argument can not be null");
+        }
+
+        this.points = points.clone();
         validatePointsPresence();
-        validatePointsUniqueness(); // this method sorts the points
+        validatePointsUniqueness();
+
+        ArrayList<LineSegment> list = computeSegmentList();
+        this.segments = list.toArray(new LineSegment[list.size()]);
     }
 
     public LineSegment[] segments() {
-        ArrayList<LineSegment> list = computeSegmentList();
-        return list.toArray(new LineSegment[list.size()]);
+        return this.segments;
     }
 
     public int numberOfSegments() {
-        ArrayList<LineSegment> list = computeSegmentList();
-        return list.size();
+        return segments.length;
     }
 
     private ArrayList<LineSegment> computeSegmentList() {
@@ -54,8 +60,8 @@ public class BruteCollinearPoints {
     }
 
     private void validatePointsPresence() {
-        for(Point currentPoint : points) {
-            if(currentPoint == null) {
+        for (Point currentPoint : points) {
+            if (currentPoint == null) {
                 throw new IllegalArgumentException("Null points not allowed");
             }
         }
@@ -64,7 +70,7 @@ public class BruteCollinearPoints {
     private void validatePointsUniqueness() {
         Arrays.sort(this.points);
 
-        for(int i = 0; i < points.length - 1; i++) {
+        for (int i = 0; i < points.length - 1; i++) {
             Point currentPoint = points[i];
             Point nextPoint = points[i + 1];
 
@@ -76,18 +82,18 @@ public class BruteCollinearPoints {
 
     public static void main(String[] args) {
         Point[] points = {
-                new Point(0,0),
-                new Point(1,1),
-                new Point(2,2),
-                new Point(3,3),
-                new Point(1,5),
-                new Point(2,5),
-                new Point(3,5),
-                new Point(4,5),
+                new Point(10000, 0),
+                new Point(0, 10000),
+                new Point(3000, 7000),
+                new Point(7000, 3000),
+                new Point(20000, 21000),
+                new Point(3000, 4000),
+                new Point(14000, 15000),
+                new Point(6000, 7000)
         };
 
         BruteCollinearPoints bf = new BruteCollinearPoints(points);
-        for(LineSegment ls : bf.segments()) {
+        for (LineSegment ls : bf.segments()) {
             System.out.println(ls);
         }
     }
