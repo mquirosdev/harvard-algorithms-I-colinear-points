@@ -1,1 +1,18 @@
-# harvard-algorithms-I-colinear-points
+# Collinear Points
+
+## Requirements
+
+ - [Setup](https://lift.cs.princeton.edu/java/mac/)
+ - [algs4 lib documentation](algs4.cs.princeton.edu/code/javadoc/edu/princeton/cs/algs4)
+
+## Specification
+
+[Specification](https://coursera.cs.princeton.edu/algs4/assignments/queues/specification.php)
+
+## Run locally
+
+In the src folder run the following commands
+```
+javac-algs4 *.java
+java-algs4 FastCollinearPoints < input8.txt
+```
